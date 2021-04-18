@@ -1,0 +1,19 @@
+{
+    "name": "kindred/wp-plugin-boiler",
+    "description": "",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Chris Kindred",
+            "email": "cmkindred@gmail.com"
+        }
+    ],
+    "require": {
+        "php-di/php-di": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Boiler\\": "src/"
+        }
+    }
+}

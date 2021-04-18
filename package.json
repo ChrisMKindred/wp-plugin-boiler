@@ -1,0 +1,28 @@
+{
+  "name": "wp-plugin-boiler",
+  "version": "0.0.0",
+  "description": "WordPress Plugin Boiler Plate",
+  "main": "index.js",
+  "scripts": {
+    "start": "wp-scripts start index.js editor.js --output-path=./dist/",
+    "build": "wp-scripts build index.js editor.js --output-path=./dist/",
+    "packages-update": "wp-scripts packages-update"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrisMKindred/wp-plugin-boiler.git"
+  },
+  "author": "Chris Kindred",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChrisMKindred/wp-plugin-boiler/issues"
+  },
+  "homepage": "https://github.com/ChrisMKindred/wp-plugin-boiler#readme",
+  "devDependencies": {
+    "@wordpress/block-editor": "^5.3.2",
+    "@wordpress/blocks": "^8.0.2",
+    "@wordpress/i18n": "^3.19.2",
+    "@wordpress/scripts": "^14.1.1"
+  },
+  "dependencies": {}
+}
