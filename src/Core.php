@@ -5,14 +5,33 @@ final class Core {
 
 	const VERSION     = '0.0.0';
 	const PLUGIN_NAME = 'wp-plugin-boiler';
+	private static $instance;
 
-	public function __construct() {
-		$this->constants();
-		add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
+	private function __construct() {
+		define( 'BOILER_PATH', trailingslashit( plugin_dir_path( dirname( __FILE__ ) ) ) );
+		define( 'BOILER_URL', plugin_dir_url( BOILER_PATH . self::PLUGIN_NAME ) );
+		define( 'BOILER_VERSION', self::VERSION ); 
+		if ( ! defined( 'DISALLOW_FILE_EDIT' ) ) {
+			define( 'DISALLOW_FILE_EDIT', true );
+		}
 	}
 
-	public function init_plugin() {
-		$this->enqueue_scripts();
+	private function __clone() {
+	}
+
+	public static function instance(): self {
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	public function init( $file ) {
+		add_action( 'enqueue_block_editor_assets', [ $this, 'register_block_editor_assets' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'register_admin_scripts' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'register_public_scripts' ] );
+		add_action( 'init', [ $this, 'register_blocks' ] );
 	}
 
 	/**
@@ -31,13 +50,6 @@ final class Core {
 	 */
 	public static function deactivate() {
 		return;
-	}
-
-	public function enqueue_scripts() {
-		add_action( 'enqueue_block_editor_assets', [ $this, 'register_block_editor_assets' ] );
-		add_action( 'admin_enqueue_scripts', [ $this, 'register_admin_scripts' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'register_public_scripts' ] );
-		add_action( 'init', [ $this, 'register_blocks' ] );
 	}
 
 	/**
@@ -77,15 +89,6 @@ final class Core {
 		wp_enqueue_style( self::PLUGIN_NAME . '-public', BOILER_URL . 'dist/index.js', [], BOILER_VERSION, true );
 	}
 
-	private function constants() {
-		define( 'BOILER_PATH', trailingslashit( plugin_dir_path( dirname( __FILE__ ) ) ) );
-		define( 'BOILER_URL', plugin_dir_url( BOILER_PATH . self::PLUGIN_NAME ) );
-		define( 'BOILER_VERSION', self::VERSION ); 
-		if ( ! defined( 'DISALLOW_FILE_EDIT' ) ) {
-			define( 'DISALLOW_FILE_EDIT', true );
-		}
-	}
-
 	/**
 	 * Register the 
 	 *
@@ -100,13 +103,5 @@ final class Core {
 				'editor_scripts' => self::PLUGIN_NAME . '-scripts',
 			]
 		);
-	}
-
-	public static function init() {
-		static $instance = false;
-		if ( ! $instance ) {
-			$instance = new self();
-		} 
-		return $instance;
 	}
 }

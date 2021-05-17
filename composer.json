@@ -9,12 +9,16 @@
         }
     ],
     "require": {
-        "php-di/php-di": "^6.3",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1"
     },
     "autoload": {
         "psr-4": {
             "Boiler\\": "src/"
         }
+    },
+    "require-dev": {
+        "phpcompatibility/phpcompatibility-wp": "^2.1",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+        "automattic/vipwpcs": "^2.3",
+        "phpunit/phpunit": "^6"
     }
 }
