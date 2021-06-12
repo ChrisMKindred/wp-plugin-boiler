@@ -11,9 +11,6 @@ final class Core {
 		define( 'BOILER_PATH', trailingslashit( plugin_dir_path( dirname( __FILE__ ) ) ) );
 		define( 'BOILER_URL', plugin_dir_url( BOILER_PATH . self::PLUGIN_NAME ) );
 		define( 'BOILER_VERSION', self::VERSION ); 
-		if ( ! defined( 'DISALLOW_FILE_EDIT' ) ) {
-			define( 'DISALLOW_FILE_EDIT', true );
-		}
 	}
 
 	private function __clone() {

@@ -4,8 +4,8 @@
   "description": "WordPress Plugin Boiler Plate",
   "main": "index.js",
   "scripts": {
-    "start": "wp-scripts start index.js editor.js --output-path=./dist/",
-    "build": "wp-scripts build index.js editor.js --output-path=./dist/",
+    "start": "wp-scripts start",
+    "build": "wp-scripts build",
     "packages-update": "wp-scripts packages-update"
   },
   "repository": {

@@ -1,2 +1,2 @@
 import './assets/css/editor.scss';
-import './blocks/hello';
+import '../blocks/hello';
