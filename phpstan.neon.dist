@@ -1,0 +1,15 @@
+parameters:
+	level: 5
+	paths:
+		- wp-plugin-boiler.php
+		- src/
+	excludePaths:
+		- vendor
+	bootstrapFiles:
+		- vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
+		- vendor/php-stubs/acf-pro-stubs/acf-pro-stubs.php
+	tmpDir: .phpstan-cache/
+	reportUnmatchedIgnoredErrors: false
+	ignoreErrors:
+		- '#^Constant BOILER_VERSION not found.$#'
+		- '#^Constant BOILER_URL not found.$#'

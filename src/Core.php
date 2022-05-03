@@ -10,7 +10,7 @@ final class Core {
 	private function __construct() {
 		define( 'BOILER_PATH', trailingslashit( plugin_dir_path( dirname( __FILE__ ) ) ) );
 		define( 'BOILER_URL', plugin_dir_url( BOILER_PATH . self::PLUGIN_NAME ) );
-		define( 'BOILER_VERSION', self::VERSION ); 
+		define( 'BOILER_VERSION', self::VERSION );
 	}
 
 	private function __clone() {
@@ -73,7 +73,7 @@ final class Core {
 	 */
 	public function register_admin_scripts() {
 		wp_enqueue_script( self::PLUGIN_NAME . '-admin', BOILER_URL . 'dist/editor.css', BOILER_VERSION, true );
-		wp_enqueue_style( self::PLUGIN_NAME . '-admin', BOILER_URL . 'dist/editor.js', [], BOILER_VERSION, true );
+		wp_enqueue_style( self::PLUGIN_NAME . '-admin', BOILER_URL . 'dist/editor.js', [], BOILER_VERSION );
 	}
 
 	/**
@@ -83,17 +83,17 @@ final class Core {
 	 */
 	public function register_public_scripts() {
 		wp_enqueue_script( self::PLUGIN_NAME . '-public', BOILER_URL . 'dist/index.css', BOILER_VERSION, true );
-		wp_enqueue_style( self::PLUGIN_NAME . '-public', BOILER_URL . 'dist/index.js', [], BOILER_VERSION, true );
+		wp_enqueue_style( self::PLUGIN_NAME . '-public', BOILER_URL . 'dist/index.js', [], BOILER_VERSION );
 	}
 
 	/**
-	 * Register the 
+	 * Register the
 	 *
 	 * @return void
 	 */
 	public function register_blocks() {
 		register_block_type(
-			self::PLUGIN_NAME . '/block', 
+			self::PLUGIN_NAME . '/block',
 			[
 				'style'          => self::PLUGIN_NAME . '-public',
 				'editor_style'   => self::PLUGIN_NAME . '-editor',
